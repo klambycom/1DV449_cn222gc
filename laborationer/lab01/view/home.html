@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Lokala producenter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/lab01/view/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/lab01/view/custom.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="">Visa resultat</a></li>
+          <li><a href="/lab01/index.php/skrapa">Skrapa</a></li>
+        </ul>
+        <h1 class="text-muted">Lokala producenter</h1>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Skrapa lokala producenter</h1>
+        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-lg btn-success" href="/lab01/index.php/skrapa" role="button">Börja skrapa</a></p>
+      </div>
+
+      <div class="row">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Namn</th>
+              <th>Ort</th>
+              <th>Url</th>
+              <th>Senast skrapad</th>
+              <th>Antal skrapningar</th>
+            </tr>
+          </thead>
+          {% for producer in producers %}
+          <tbody>
+            <tr>
+              <td>{{ producer.getId() }}</td>
+              <td>
+                {{ producer.getName() }}
+              </td>
+              <td>
+                {% if producer.getLocation() != "" %}
+                  {{ producer.getLocation() }}
+                {% else %}
+                  Ort saknas
+                {% endif %}
+              </td>
+              <td>
+                {% if producer.getUrl() != "" %}
+                  <a href="{{ producer.getUrl() }}">{{ producer.getUrl() }}</a>
+                {% else %}
+                  Url saknas
+                {% endif %}
+              </td>
+              <td>{{ producer.getTimestamp() }}</td>
+              <td>{{ producer.getCounter() }}</td>
+            </tr>
+          </tbody>
+        {% endfor %}
+        </table>
+      </div>
+
+      <div class="footer">
+        <p>Christian Nilsson 2013</p>
+      </div>
+    </div>
+  </body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/lab01/view/js/bootstrap.min.js"></script>
+</html>

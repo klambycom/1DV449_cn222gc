@@ -48,6 +48,13 @@ class LocalProducersScraper extends Scraper {
         $location = $xpath->query('//span[@class="ort"]')->item(0);
         $location = preg_replace("/^Ort: /", "", $location->nodeValue);
 
+        // Image
+        $img = $xpath->query('//img')->item(0);
+        if ($img != null) {
+          $img = $img->getAttribute("src");
+          $this->img($img, $id);
+        }
+
         $result[] = new Producer($id, $name, $url, $location);
       }
     }

@@ -67,13 +67,16 @@ class ProducerDAL {
                                    `location`,
                                    `timestamp`,
                                    `counter`
-                                 FROM `Producers`");
-    $stmts->execute();
-    $result = $stmts->fetchAll(\PDO::FETCH_FUNC, function ($id, $name, $url, $loc, $time, $c) {
+                                 FROM `Producers`
+                                 WHERE  `name` !=  ''");
+    $stmt->execute();
+    $result = $stmt->fetchAll(\PDO::FETCH_FUNC, function ($id, $name, $url, $loc, $time, $c) {
       if ($name == "Not Found")
         return new ProducerNotFound($id);
 
       return new Producer($id, $name, $url, $loc, $time, $c);
-    }
+    });
+
+    return $result;
   }
 }
