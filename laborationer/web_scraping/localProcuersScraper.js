@@ -17,7 +17,7 @@ var asyncGet = function (options) {
     return function (url, callback) { curl.get(url, options, callback); };
 };
 
-var addUrlToObject = function (url, obj) {
+var addIdToObject = function (url, obj) {
     obj.id = url.match(/producent_([1-9]+)/)[1];
     return obj;
 };
@@ -47,7 +47,7 @@ exports.producers = function (callback) {
             if (err) {
                 callback(err, null);
             } else {
-                callback(null, zipWith(addUrlToObject, urls, map(extractCompanyData, pages)));
+                callback(null, zipWith(addIdToObject, urls, map(extractCompanyData, pages)));
             }
         });
     });
