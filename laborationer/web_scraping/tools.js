@@ -31,12 +31,17 @@ module.exports = (function () {
         
         map = function (fn, xs) {
             return [].map.call(xs, fn);
-        };
+        },
+
+		filter = function (fn, xs) {
+			return [].slice.call(xs).filter(fn);
+		};
 
     return {
         dot: dot,
         joinStr: joinStr,
         zipWith: zipWith,
-        map: map
+        map: map,
+		filter: filter
     };
 }());
