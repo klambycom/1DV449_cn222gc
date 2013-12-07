@@ -2,29 +2,46 @@
 'use strict';
 
 var express = require('express'),
-    app = express();
-    //curl = require('node-curl');
+    app = express(),
+    scraper = require('./localProcuersScraper'),
+    mongoose = require('mongoose'),
+    Producer = require('./database');
 
+// Settings
+app.configure(function () {
+});
+
+app.configure('development', function () {
+    app.set('db', 'mongodb://localhost/test');
+});
+
+app.configure('production', function () {
+});
+
+mongoose.connect(app.get('db'));
+
+// Routes
 app.get('/hello.txt', function (req, res) {
     res.send('Hello, World');
 });
 
-app.get('/scrape', function (req, res) {
-    /*
-    curl('coursepress.lnu.se', function (error) {
-        console.info(this.status);
-        console.info('-----');
-        console.info(this.body);
-        console.info('-----');
-        console.info(this.info('SIZE_DOWNLOAD'));
+app.get('/', function (req, res) {
+    Producer.find({ name: /^P1/ }, function (err, producer) {
+        if (err) { console.log(err); }
+        console.log(producer);
+        res.send(producer);
     });
-    */
+});
 
-    res.send('Ok');
+app.get('/skrapa', function (req, res) {
+    scraper.producers(function (err, data) {
+        res.send(data);
+    });
 });
 
 // Show error messages
 app.use(express.errorHandler({ dumpExceptions: true }));
 
+// Start server
 app.listen(3000);
 console.log('Listening on port 3000');

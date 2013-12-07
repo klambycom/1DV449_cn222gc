@@ -15,7 +15,8 @@
 		"express-hbs": "0.5.x",
 		"node-curl": "0.3.x",
 		"cheerio": "0.12.x",
-		"async": "0.2.x"
+		"async": "0.2.x",
+		"mongoose": "3.8.x"
 	},
 	"engines": {
 		"node": "0.10.x"
