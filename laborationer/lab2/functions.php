@@ -13,9 +13,9 @@ if(isset($_GET['function'])) {
 		logout();
     } elseif($_GET['function'] == 'add') {
        
-	    $name = $_GET["name"];
-		$message = $_GET["message"];
-		$pid = $_GET["pid"];
+	  $name =    htmlspecialchars($_GET["name"]);
+		$message = htmlspecialchars($_GET["message"]);
+		$pid =     htmlspecialchars($_GET["pid"]);
 		
 		addToDB($name, $message, $pid);
 		echo "Det gick fint! Ladda om sidan för att se ditt meddelande!";

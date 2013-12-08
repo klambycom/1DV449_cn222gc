@@ -583,3 +583,19 @@ $q = "SELECT id FROM users WHERE username = ? AND password = ?";
 $stm = $db->prepare($q);
 $stm->execute(array($u, $p));
 ```
+
+### Html och javascript i meddelande
+
+Det går att skriva html och javascript i kommentarsfunktionen. Så om jag är
+Scan vill jag kanske att alla länkar ska leda till mig istället för att visa
+information om någon annan producent.
+
+```javascript
+<script>
+function changeProducer() {
+  window.location = "http://www.scan.se/";
+}
+</script>
+```
+
+Det går att fixa med `htmlspecialchars`.
