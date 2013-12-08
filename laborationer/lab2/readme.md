@@ -127,3 +127,70 @@ iaf.
 
 Anledningen till att laddtiden inte förbättras tror jag är att det finns fler
 saker på sidan som tar tid att ladda.
+
+
+## Vad är css.php?
+
+Det finns två css-filer som hämtas från vhost3.lnu.se/~1dv449 som tar väldigt
+lång tid att ladda. Filerna genereras med hjälp av php, men det finns inga
+kommentarer som förklarar varför.
+
+Jag tänker lägga filerna på min server istället eftersom filerna inte ändras
+och inte cachas.
+
+Innan förändring:
+16 requests, 502 KB transferred, 3.25 s
+16 requests, 502 KB transferred, 3.60 s
+16 requests, 502 KB transferred, 1.71 s
+16 requests, 502 KB transferred, 6.84 s
+16 requests, 502 KB transferred, 2.76 s
+16 requests, 502 KB transferred, 3.20 s
+16 requests, 502 KB transferred, 2.24 s
+16 requests, 502 KB transferred, 3.32 s
+16 requests, 502 KB transferred, 4.02 s
+16 requests, 502 KB transferred, 1.94 s
+16 requests, 502 KB transferred, 6.91 s
+16 requests, 502 KB transferred, 1.74 s
+16 requests, 502 KB transferred, 3.18 s
+16 requests, 502 KB transferred, 2.96 s
+16 requests, 502 KB transferred, 2.58 s
+16 requests, 502 KB transferred, 3.09 s
+16 requests, 502 KB transferred, 3.09 s
+16 requests, 502 KB transferred, 3.69 s
+16 requests, 502 KB transferred, 2.93 s
+16 requests, 502 KB transferred, 2.14 s
+
+I genomsnitt innan förändring:
+16 requests, 502 KB transferred, 3.26 s
+
+Efter förändring:
+16 requests, 502 KB transferred, 848 ms
+16 requests, 502 KB transferred, 3450 ms
+16 requests, 502 KB transferred, 807 ms
+16 requests, 502 KB transferred, 743 ms
+16 requests, 502 KB transferred, 690 ms
+16 requests, 502 KB transferred, 836 ms
+16 requests, 502 KB transferred, 722 ms
+16 requests, 502 KB transferred, 828 ms
+16 requests, 502 KB transferred, 913 ms
+16 requests, 502 KB transferred, 611 ms
+16 requests, 502 KB transferred, 2090 ms
+16 requests, 502 KB transferred, 790 ms
+16 requests, 502 KB transferred, 640 ms
+16 requests, 502 KB transferred, 689 ms
+16 requests, 502 KB transferred, 658 ms
+16 requests, 502 KB transferred, 605 ms
+16 requests, 502 KB transferred, 3380 ms
+16 requests, 502 KB transferred, 645 ms
+16 requests, 502 KB transferred, 571 ms
+16 requests, 502 KB transferred, 667 ms
+
+I genomsnitt efter förändring:
+16 requests, 502 KB transferred, 1.06 s
+
+Laddtiden blev mycket bättre och är nu oftast under en sekund. Det är inte
+längre lika många parallella nerladdningar, men det får jag fixa senare.
+
+Jag kunde inte se att css-filerna ändrades, men om de gör det så skulle jag
+kunna cacha filerna på min server istället för att bara lägga filerna där
+manuellt.

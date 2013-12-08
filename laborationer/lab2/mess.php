@@ -71,8 +71,8 @@
 	    <link href="css/bootstrap.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
-	    <link href="http://vhost3.lnu.se:20080/~1dv449/scrape/css.php?css=grid1" rel="stylesheet">
-		<link href="http://vhost3.lnu.se:20080/~1dv449/scrape/css.php?css=grid2" rel="stylesheet">
+	    <link href="css/grid1.css" rel="stylesheet">
+		<link href="css/grid2.css" rel="stylesheet">
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
 	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
