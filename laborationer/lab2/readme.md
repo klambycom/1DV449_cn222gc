@@ -319,3 +319,68 @@ I genomsnitt efter förändring:
 
 Det blev kanske ingen jättestor skillnad men css-filen blev hälften så stor och
 det enda jag gjorde var att ändrat från development till produktion.
+
+
+### Content Delivery Network
+
+Google har CDN för ett antal js-bibliotek, så det kommer jag använda för jQuery.
+Bootstrap har CDN för sin css fil som jag också tänker använda. Det kommer göra
+så att fler filer kan laddas ner samtidigt och det finns stor chans att filerna
+redan är chachade.
+
+Referens är boken High Performance Web Sites kapitel fyra.
+
+Innan förändring:
+13 requests, 493 KB transferred, 718 ms
+13 requests, 493 KB transferred, 683 ms
+13 requests, 493 KB transferred, 540 ms
+13 requests, 493 KB transferred, 633 ms
+13 requests, 493 KB transferred, 492 ms
+13 requests, 493 KB transferred, 481 ms
+13 requests, 493 KB transferred, 640 ms
+13 requests, 493 KB transferred, 656 ms
+13 requests, 493 KB transferred, 495 ms
+13 requests, 493 KB transferred, 725 ms
+13 requests, 493 KB transferred, 555 ms
+13 requests, 493 KB transferred, 480 ms
+13 requests, 493 KB transferred, 511 ms
+13 requests, 493 KB transferred, 577 ms
+13 requests, 493 KB transferred, 492 ms
+13 requests, 493 KB transferred, 493 ms
+13 requests, 493 KB transferred, 513 ms
+13 requests, 493 KB transferred, 625 ms
+13 requests, 493 KB transferred, 575 ms
+13 requests, 493 KB transferred, 686 ms
+
+I genomsnitt innan förändring:
+13 requests, 493 KB transferred, 579 ms
+
+Efter förändring:
+13 requests, 156 KB transferred, 557 ms
+13 requests, 156 KB transferred, 719 ms
+13 requests, 156 KB transferred, 527 ms
+13 requests, 156 KB transferred, 440 ms
+13 requests, 156 KB transferred, 437 ms
+13 requests, 156 KB transferred, 339 ms
+13 requests, 156 KB transferred, 384 ms
+13 requests, 156 KB transferred, 511 ms
+13 requests, 156 KB transferred, 363 ms
+13 requests, 156 KB transferred, 389 ms
+13 requests, 156 KB transferred, 398 ms
+13 requests, 156 KB transferred, 409 ms
+13 requests, 156 KB transferred, 382 ms
+13 requests, 156 KB transferred, 364 ms
+13 requests, 156 KB transferred, 458 ms
+13 requests, 156 KB transferred, 373 ms
+13 requests, 156 KB transferred, 401 ms
+13 requests, 156 KB transferred, 353 ms
+13 requests, 156 KB transferred, 610 ms
+13 requests, 156 KB transferred, 357 ms
+
+I genomsnitt efter förändring:
+13 requests, 156 KB transferred, 442 ms
+
+Det blev väldigt bra resultat, men antagligen inte pga jag använder CDN. Jag
+gömde att jQuery och Bootstrap inte var minified. Det blev inte fler parallella
+nerladdningar i Chrome. Men jag kommer ändå ha kvar det eftersom jag tror det
+kommer gå fortare för en vanlig använda som har cache igång i webbläsaren.

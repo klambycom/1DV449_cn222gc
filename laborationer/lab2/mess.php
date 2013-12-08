@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Karla:400,700">
 	<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/screen.css" media="screen"/>
-	<script type="text/javascript" src="js/jquery.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<!--<script type="text/javascript" src="js/longpoll.js"></script>-->
 	
 	<script src="js/lightbox.js"></script>
@@ -57,8 +57,8 @@
 	</script>
 
 
-	<!-- Bootstrap core CSS -->
-	    <link href="css/bootstrap.css" rel="stylesheet">
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
