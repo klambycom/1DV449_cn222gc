@@ -608,3 +608,12 @@ den någonstans som inte är tillgängligt utåt.
 
 För mig är public_html tillgänglig men inte mappen som public_hml ligger,
 därför la jag db.db där.
+
+### Logga ut
+
+För att logga ut måste man stänga webbläsaren. Det finns en logga ut-knapp som
+inte fungerar, så om man klickar på den är man fortfarande inloggad även om man
+kanske inte tror det. Och då kan någon annan använda datorn efter och posta
+kommentarer som den inloggade personen.
+
+Vid utloggning ska sessionen tas bort.

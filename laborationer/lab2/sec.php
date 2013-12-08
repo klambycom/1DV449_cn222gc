@@ -98,7 +98,8 @@ function logout() {
 	if(!session_id()) {
 		sec_session_start();
 	}
-	session_end();
+	unset($_SESSION['login_string']); 
+	unset($_SESSION['user']);
 	header('Location: index.php');
 }
 
