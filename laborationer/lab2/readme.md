@@ -15,7 +15,7 @@ Sidan laddades snabbare innan jag tog bort link-taggarna till js-filerna som
 inte fanns med det var bara 0.05 sekunders skillnad så det finns antagligen
 andra saker på sidan som tar längre tid att ladda. Det blev två färre requests.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#01-ta-bort-404or)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#01-ta-bort-404or) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/b6c0d4168e47a23c9f94636a98c61c9935c771ea)
 
 
@@ -31,10 +31,10 @@ iaf.
 Anledningen till att laddtiden inte förbättras tror jag är att det finns fler
 saker på sidan som tar tid att ladda.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#02-stor-bild)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#02-stor-bild) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/ed14342901264ae0da57fc8130797c55684ee1a4)
 
-## Vad är css.php?
+### Vad är css.php?
 
 Det finns två css-filer som hämtas från vhost3.lnu.se/~1dv449 som tar väldigt
 lång tid att ladda. Filerna genereras med hjälp av php, men det finns inga
@@ -50,13 +50,13 @@ Jag kunde inte se att css-filerna ändrades, men om de gör det så skulle jag
 kunna cacha filerna på min server istället för att bara lägga filerna där
 manuellt.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#03-cssphp)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#03-cssphp) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/13f88869be6835c6c0db978cd9c1fe9b9f1c7060)
 
 
 ### En css-fil
 
-Det finns 5 css-filer och lite css i html-filen så om jag lägger all css i
+Det finns 5 css-filer och lite css i html-filen, så om jag lägger all css i
 en fil blir det 4 färre http-anrop och all css kan cachas.
 
 Referens är High Performance Web Sites sidan 29.
@@ -66,39 +66,42 @@ kommer använda CDN för Bootstrap senare.
 
 Tiden att ladda sidan är nu en halv sekund och 13 requests.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#04-en-css-fil)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#04-en-css-fil) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/b1b09aeb2fe2500e694c5554ddb9cabbecc4d294)
 
 
-# Förminska css
+### Förminska css
 
 Enligt boken High Perfomance Web Sites tjänar man oftast inte så mycket på att
-förminska (minifying) css. Men eftersom cssen kommer har kompilerats från scss
+förminska (minifying) css. Men eftersom cssen har kompilerats från scss till css
 i development mode och inte production mode finns det många kommentarer och 
 därför tror jag filstorleken kommer minska ganska mycket.
 
 Det blev kanske ingen jättestor skillnad men css-filen blev hälften så stor och
 det enda jag gjorde var att ändrat från development till produktion.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#05-f%C3%B6rminska-css)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#05-f%C3%B6rminska-css) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/ee730fcc128c23a3d50c187cb1d6b628de0da4cc)
 
 
 ### Content Delivery Network
 
 Google har CDN för ett antal js-bibliotek, så det kommer jag använda för jQuery.
-Bootstrap har CDN för sin css fil som jag också tänker använda. Det kommer göra
-så att fler filer kan laddas ner samtidigt och det finns stor chans att filerna
+Bootstrap har CDN för sin css fil som jag också tänker använda.
+
+Det kommer göra så att fler filer kan laddas ner samtidigt och det finns stor chans att filerna
 redan är chachade.
 
 Referens är boken High Performance Web Sites kapitel fyra.
 
 Det blev väldigt bra resultat, men antagligen inte pga jag använder CDN. Jag
-gömde att jQuery och Bootstrap inte var minified. Det blev inte fler parallella
-nerladdningar i Chrome. Men jag kommer ändå ha kvar det eftersom jag tror det
-kommer gå fortare för en vanlig använda som har cache igång i webbläsaren.
+gömde att jQuery och Bootstrap inte var minified.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#06-cdn)
+Det blev inte fler parallella nerladdningar i Chrome. Men jag kommer ändå ha kvar
+det eftersom jag tror det kommer gå fortare för en vanlig använda som har cache
+igång i webbläsaren.
+
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#06-cdn) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/db613b3670865290af113614c03425c6ad05c8e1)
 
 ### Minifying javascript
@@ -117,17 +120,18 @@ tid att ladda än vad en javascript-fil gjorde innan och ibland mindre.
 Det kan vara ett problem att javascript-filen ibland tar längre tid att ladda
 ner eftersom alla javascript-filer laddades ner parallelt innan.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#07-minifying-javascript)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#07-minifying-javascript) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/9752cd86f8c30053ed3e2e8d3e6470f8b1720ba6)
 
 
-## Gzip
+### Gzip
 
 Komprimera filerna med Gzip och mod_deflate, för att filerna ska bli mindre.
+Referens är boken High Performance Web Sites.
 
 23 KB mindre att ladda ner.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#08-gzip)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#08-gzip) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/4a817773d4aef13d9131d240702fea026b76dcc1)
 
 
@@ -138,7 +142,7 @@ att använda en tag för alla fonterna.
 
 Det blev väldigt liten skillnad.
 
-[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#09-en-link-tag-f%C3%B6r-fonts)
+[Testresultat](https://github.com/klambycom/1DV449_cn222gc/wiki/Lab-02-tests#09-en-link-tag-f%C3%B6r-fonts) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/dc2bf2649db6648db84d2633474fbd9e0f17a621)
 
 
@@ -194,8 +198,9 @@ därför la jag db.db där.
 
 För att logga ut måste man stänga webbläsaren. Det finns en logga ut-knapp som
 inte fungerar, så om man klickar på den är man fortfarande inloggad även om man
-kanske inte tror det. Och då kan någon annan använda datorn efter och posta
-kommentarer som den inloggade personen.
+kanske inte tror det.
+
+Och då kan någon annan använda datorn efter och posta kommentarer som den inloggade personen.
 
 Vid utloggning ska sessionen tas bort.
 
@@ -222,5 +227,5 @@ Jag anväde Web Sockets i Individuellt mjukvaruutvecklingsprojekt, så det var
 intressant att se hur Long Polling fungerar. Projektet hade varit jobbigt att
 göra med Long Polling.
 
-[Testa long polling](http://www.kattmjao.se/1dv449/)
+[Testa long polling](http://www.kattmjao.se/1dv449/) och
 [Commit](https://github.com/klambycom/1DV449_cn222gc/commit/61faff26976b7410137fc5017cd64f27841624ac)
