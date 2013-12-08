@@ -18,7 +18,7 @@ if(isset($_GET['function'])) {
 		$pid =     htmlspecialchars($_GET["pid"]);
 		
 		addToDB($name, $message, $pid);
-		echo "Det gick fint! Ladda om sidan för att se ditt meddelande!";
+		echo "Det gick fint! Ladda inte om sidan du borde se ditt meddelande om ett par sekunder!";
     }
     elseif($_GET['function'] == 'producers') {
     	$pid = $_GET["pid"];

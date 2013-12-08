@@ -617,3 +617,24 @@ kanske inte tror det. Och då kan någon annan använda datorn efter och posta
 kommentarer som den inloggade personen.
 
 Vid utloggning ska sessionen tas bort.
+
+
+Long Polling
+------------
+
+Jag anropar filen longpoll.php med javascript. Longpoll.php stänger sessionen
+eftersom den annars kan låsas för andra förfrågningar, tror jag.
+
+Sen pausas php i två sekunder med sleep(), efter det så kollar den om det finns
+nya kommentarer för producenten i database.
+
+Om det finns nya kommentarer skrivs de ut som json. Kommentarerna skivs ut och
+filen longpoll.php anropas igen med javascript.
+
+Om det inte finns nya kommentarer räknas en räknare upp och koden körs igen,
+när koden har körts 15 gånger avslutas php-koden. Om användare fortfarande är
+inne på sidan görs ett nytt anrop till longpoll.php.
+
+Jag anväde Web Sockets i Individuellt mjukvaruutvecklingsprojekt, så det var
+intressant att se hur Long Polling fungerar. Projektet hade varit jobbigt att
+göra med Long Polling.
