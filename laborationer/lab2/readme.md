@@ -258,3 +258,64 @@ Jag bestämde mig för att ha en bootstrap.css och en screen.css eftersom jag
 kommer använda CDN för Bootstrap senare.
 
 Tiden att ladda sidan är nu en halv sekund och 13 requests.
+
+
+# Förminska css
+
+Enligt boken High Perfomance Web Sites tjänar man oftast inte så mycket på att
+förminska (minifying) css. Men eftersom cssen kommer har kompilerats från scss
+i development mode och inte production mode finns det många kommentarer och 
+därför tror jag filstorleken kommer minska ganska mycket.
+
+Innan förändring:
+13 requests, 501 KB transferred, 751 ms
+13 requests, 501 KB transferred, 748 ms
+13 requests, 501 KB transferred, 572 ms
+13 requests, 501 KB transferred, 671 ms
+13 requests, 501 KB transferred, 695 ms
+13 requests, 501 KB transferred, 592 ms
+13 requests, 501 KB transferred, 473 ms
+13 requests, 501 KB transferred, 553 ms
+13 requests, 501 KB transferred, 507 ms
+13 requests, 501 KB transferred, 473 ms
+13 requests, 501 KB transferred, 709 ms
+13 requests, 501 KB transferred, 506 ms
+13 requests, 501 KB transferred, 557 ms
+13 requests, 501 KB transferred, 635 ms
+13 requests, 501 KB transferred, 584 ms
+13 requests, 501 KB transferred, 510 ms
+13 requests, 501 KB transferred, 632 ms
+13 requests, 501 KB transferred, 536 ms
+13 requests, 501 KB transferred, 491 ms
+13 requests, 501 KB transferred, 597 ms
+
+I genomsnitt innan förändring:
+13 requests, 502 KB transferred, 590 ms
+
+Efter förändring:
+13 requests, 493 KB transferred, 718 ms
+13 requests, 493 KB transferred, 683 ms
+13 requests, 493 KB transferred, 540 ms
+13 requests, 493 KB transferred, 633 ms
+13 requests, 493 KB transferred, 492 ms
+13 requests, 493 KB transferred, 481 ms
+13 requests, 493 KB transferred, 640 ms
+13 requests, 493 KB transferred, 656 ms
+13 requests, 493 KB transferred, 495 ms
+13 requests, 493 KB transferred, 725 ms
+13 requests, 493 KB transferred, 555 ms
+13 requests, 493 KB transferred, 480 ms
+13 requests, 493 KB transferred, 511 ms
+13 requests, 493 KB transferred, 577 ms
+13 requests, 493 KB transferred, 492 ms
+13 requests, 493 KB transferred, 493 ms
+13 requests, 493 KB transferred, 513 ms
+13 requests, 493 KB transferred, 625 ms
+13 requests, 493 KB transferred, 575 ms
+13 requests, 493 KB transferred, 686 ms
+
+I genomsnitt efter förändring:
+13 requests, 493 KB transferred, 579 ms
+
+Det blev kanske ingen jättestor skillnad men css-filen blev hälften så stor och
+det enda jag gjorde var att ändrat från development till produktion.
