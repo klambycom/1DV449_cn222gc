@@ -565,3 +565,21 @@ I genomsnitt efter förändring:
 11 requests, 111 KB transferred, 592 ms
 
 Det blev väldigt liten skillnad.
+
+
+Säkerhetsproblem
+----------------
+
+### Sql injections
+
+Sidan är inte skyddad mot sql injections, vilket gjorde så jag kunde logga in
+med avnändarnamn admin och lösenord ' OR '' = '.
+
+Istället för att skicka med användarens inmatning direkt i sql-frågan måste
+tecken som ' göras om, och det kan PDO göra:
+
+```php
+$q = "SELECT id FROM users WHERE username = ? AND password = ?";
+$stm = $db->prepare($q);
+$stm->execute(array($u, $p));
+```

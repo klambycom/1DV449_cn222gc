@@ -45,13 +45,13 @@ function isUser($u, $p) {
 	catch(PDOEception $e) {
 		die("Del -> " .$e->getMessage());
 	}
-	$q = "SELECT id FROM users WHERE username = '$u' AND password = '$p'";
+	$q = "SELECT id FROM users WHERE username = ? AND password = ?";
 
 	$result;
 	$stm;	
 	try {
 		$stm = $db->prepare($q);
-		$stm->execute();
+		$stm->execute(array($u, $p));
 		$result = $stm->fetchAll();
 	}
 	catch(PDOException $e) {
