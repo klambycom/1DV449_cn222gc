@@ -507,3 +507,61 @@ I genomsnitt efter förändring:
 12 requests, 112 KB transferred, 556 ms
 
 23 KB mindre att ladda ner.
+
+
+### En link-tag för fonts
+
+Det finns en link-tag för varje font, och jag såg på Google Fonts att det går
+att använda en tag för alla fonterna.
+
+Innan förändring:
+12 requests, 112 KB transferred, 568 ms
+12 requests, 112 KB transferred, 490 ms
+12 requests, 112 KB transferred, 467 ms
+12 requests, 112 KB transferred, 660 ms
+12 requests, 112 KB transferred, 418 ms
+12 requests, 112 KB transferred, 337 ms
+12 requests, 112 KB transferred, 521 ms
+12 requests, 112 KB transferred, 444 ms
+12 requests, 112 KB transferred, 604 ms
+12 requests, 112 KB transferred, 665 ms
+12 requests, 112 KB transferred, 560 ms
+12 requests, 112 KB transferred, 486 ms
+12 requests, 112 KB transferred, 876 ms
+12 requests, 112 KB transferred, 499 ms
+12 requests, 112 KB transferred, 538 ms
+12 requests, 112 KB transferred, 513 ms
+12 requests, 112 KB transferred, 951 ms
+12 requests, 112 KB transferred, 488 ms
+12 requests, 112 KB transferred, 441 ms
+12 requests, 112 KB transferred, 594 ms
+
+I genomsnitt innan förändring:
+12 requests, 112 KB transferred, 556 ms
+
+Efter förändring:
+11 requests, 111 KB transferred, 681 ms
+11 requests, 111 KB transferred, 500 ms
+11 requests, 111 KB transferred, 518 ms
+11 requests, 111 KB transferred, 664 ms
+11 requests, 111 KB transferred, 556 ms
+11 requests, 111 KB transferred, 575 ms
+11 requests, 111 KB transferred, 470 ms
+11 requests, 111 KB transferred, 611 ms
+11 requests, 111 KB transferred, 455 ms
+11 requests, 111 KB transferred, 432 ms
+11 requests, 111 KB transferred, 602 ms
+11 requests, 111 KB transferred, 771 ms
+11 requests, 111 KB transferred, 687 ms
+11 requests, 111 KB transferred, 407 ms
+11 requests, 111 KB transferred, 805 ms
+11 requests, 111 KB transferred, 595 ms
+11 requests, 111 KB transferred, 416 ms
+11 requests, 111 KB transferred, 768 ms
+11 requests, 111 KB transferred, 687 ms
+11 requests, 111 KB transferred, 634 ms
+
+I genomsnitt efter förändring:
+11 requests, 111 KB transferred, 592 ms
+
+Det blev väldigt liten skillnad.
