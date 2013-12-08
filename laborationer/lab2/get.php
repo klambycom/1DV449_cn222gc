@@ -5,7 +5,7 @@ function getMessage($nr) {
 	$db = null;
 
 	try {
-		$db = new PDO("sqlite:db.db");
+		$db = new PDO("sqlite:../db.db");
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	catch(PDOEception $e) {
@@ -37,7 +37,7 @@ function getMessageIdForProducer($pid) {
 	$db = null;
 
 	try {
-		$db = new PDO("sqlite:db.db");
+		$db = new PDO("sqlite:../db.db");
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	catch(PDOEception $e) {

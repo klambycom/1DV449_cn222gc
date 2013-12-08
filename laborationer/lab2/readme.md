@@ -599,3 +599,12 @@ function changeProducer() {
 ```
 
 Det går att fixa med `htmlspecialchars`.
+
+### Ladda ner databas
+
+Databasen går att ladda ner om man kan adressen, men det är ett ganska dåligt
+namn så det går säkert att gissa. Enklaste lösningen är antagligen att flytta
+den någonstans som inte är tillgängligt utåt.
+
+För mig är public_html tillgänglig men inte mappen som public_hml ligger,
+därför la jag db.db där.
