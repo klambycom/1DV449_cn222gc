@@ -384,3 +384,69 @@ Det blev väldigt bra resultat, men antagligen inte pga jag använder CDN. Jag
 gömde att jQuery och Bootstrap inte var minified. Det blev inte fler parallella
 nerladdningar i Chrome. Men jag kommer ändå ha kvar det eftersom jag tror det
 kommer gå fortare för en vanlig använda som har cache igång i webbläsaren.
+
+### Minifying javascript
+
+Jag ska ta all javascript (inte jQuery) och lägga i en fil som jag sen förminskar. Jag kommer
+samtidigt lägga all javascript längst ner html-filen.
+
+Storleken på både html och javascript kommer minska eftersom det just nu är
+blandat.
+
+Referens är boken High Performance Web Sites kapitel 8, 10 och 12.
+
+Innan förändring:
+13 requests, 156 KB transferred, 557 ms
+13 requests, 156 KB transferred, 719 ms
+13 requests, 156 KB transferred, 527 ms
+13 requests, 156 KB transferred, 440 ms
+13 requests, 156 KB transferred, 437 ms
+13 requests, 156 KB transferred, 339 ms
+13 requests, 156 KB transferred, 384 ms
+13 requests, 156 KB transferred, 511 ms
+13 requests, 156 KB transferred, 363 ms
+13 requests, 156 KB transferred, 389 ms
+13 requests, 156 KB transferred, 398 ms
+13 requests, 156 KB transferred, 409 ms
+13 requests, 156 KB transferred, 382 ms
+13 requests, 156 KB transferred, 364 ms
+13 requests, 156 KB transferred, 458 ms
+13 requests, 156 KB transferred, 373 ms
+13 requests, 156 KB transferred, 401 ms
+13 requests, 156 KB transferred, 353 ms
+13 requests, 156 KB transferred, 610 ms
+13 requests, 156 KB transferred, 357 ms
+
+I genomsnitt innan förändring:
+13 requests, 156 KB transferred, 442 ms
+
+Efter förändring:
+12 requests, 135 KB transferred, 507 ms
+12 requests, 135 KB transferred, 801 ms
+12 requests, 135 KB transferred, 420 ms
+12 requests, 135 KB transferred, 451 ms
+12 requests, 135 KB transferred, 383 ms
+12 requests, 135 KB transferred, 376 ms
+12 requests, 135 KB transferred, 410 ms
+12 requests, 135 KB transferred, 468 ms
+12 requests, 135 KB transferred, 393 ms
+12 requests, 135 KB transferred, 396 ms
+12 requests, 135 KB transferred, 581 ms
+12 requests, 135 KB transferred, 429 ms
+12 requests, 135 KB transferred, 486 ms
+12 requests, 135 KB transferred, 353 ms
+12 requests, 135 KB transferred, 408 ms
+12 requests, 135 KB transferred, 454 ms
+12 requests, 135 KB transferred, 393 ms
+12 requests, 135 KB transferred, 500 ms
+12 requests, 135 KB transferred, 405 ms
+12 requests, 135 KB transferred, 388 ms
+
+I genomsnitt efter förändring:
+13 requests, 135 KB transferred, 450 ms
+
+Mess.php blev nästan hälften så stor och javascript-filen tar bara lite längre
+tid att ladda än vad en javascript-fil gjorde innan och ibland mindre.
+
+Det kan vara ett problem att javascript-filen ibland tar längre tid att ladda
+ner eftersom alla javascript-filer laddades ner parallelt innan.
