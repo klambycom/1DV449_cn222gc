@@ -38,23 +38,18 @@ package { "php5-curl":
   require => Class["apache::mod::php"],
 }
 
+package { "php5-sqlite":
+  ensure  => installed,
+  require => Class["apache::mod::php"],
+}
+
 file { 'php-config':
   path    => '/etc/php5/apache2/php.ini',
   source  => '/vagrant/php.ini',
   require => Class["apache::mod::php"],
 }
 
-# Module puppetlabs/mysql
-include "mysql"
-include "mysql::php"
-
-class { "mysql::server":
-  config_hash => { "root_password" => "foobar" }
-}
-
-mysql::db { "database":
-  user     => "1dv408",
-  password => "mypassword",
-  host     => "localhost",
-  grant    => ["all"],
+# Remove?
+package { "sqlite3":
+  ensure => installed,
 }
