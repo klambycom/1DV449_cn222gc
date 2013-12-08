@@ -443,10 +443,67 @@ Efter förändring:
 12 requests, 135 KB transferred, 388 ms
 
 I genomsnitt efter förändring:
-13 requests, 135 KB transferred, 450 ms
+12 requests, 135 KB transferred, 450 ms
 
 Mess.php blev nästan hälften så stor och javascript-filen tar bara lite längre
 tid att ladda än vad en javascript-fil gjorde innan och ibland mindre.
 
 Det kan vara ett problem att javascript-filen ibland tar längre tid att ladda
 ner eftersom alla javascript-filer laddades ner parallelt innan.
+
+
+## Gzip
+
+Komprimera filerna med Gzip och mod_deflate, för att filerna ska bli mindre.
+
+Innan förändring:
+12 requests, 135 KB transferred, 507 ms
+12 requests, 135 KB transferred, 801 ms
+12 requests, 135 KB transferred, 420 ms
+12 requests, 135 KB transferred, 451 ms
+12 requests, 135 KB transferred, 383 ms
+12 requests, 135 KB transferred, 376 ms
+12 requests, 135 KB transferred, 410 ms
+12 requests, 135 KB transferred, 468 ms
+12 requests, 135 KB transferred, 393 ms
+12 requests, 135 KB transferred, 396 ms
+12 requests, 135 KB transferred, 581 ms
+12 requests, 135 KB transferred, 429 ms
+12 requests, 135 KB transferred, 486 ms
+12 requests, 135 KB transferred, 353 ms
+12 requests, 135 KB transferred, 408 ms
+12 requests, 135 KB transferred, 454 ms
+12 requests, 135 KB transferred, 393 ms
+12 requests, 135 KB transferred, 500 ms
+12 requests, 135 KB transferred, 405 ms
+12 requests, 135 KB transferred, 388 ms
+
+I genomsnitt innan förändring:
+13 requests, 135 KB transferred, 450 ms
+
+Efter förändring:
+12 requests, 112 KB transferred, 568 ms
+12 requests, 112 KB transferred, 490 ms
+12 requests, 112 KB transferred, 467 ms
+12 requests, 112 KB transferred, 660 ms
+12 requests, 112 KB transferred, 418 ms
+12 requests, 112 KB transferred, 337 ms
+12 requests, 112 KB transferred, 521 ms
+12 requests, 112 KB transferred, 444 ms
+12 requests, 112 KB transferred, 604 ms
+12 requests, 112 KB transferred, 665 ms
+12 requests, 112 KB transferred, 560 ms
+12 requests, 112 KB transferred, 486 ms
+12 requests, 112 KB transferred, 876 ms
+12 requests, 112 KB transferred, 499 ms
+12 requests, 112 KB transferred, 538 ms
+12 requests, 112 KB transferred, 513 ms
+12 requests, 112 KB transferred, 951 ms
+12 requests, 112 KB transferred, 488 ms
+12 requests, 112 KB transferred, 441 ms
+12 requests, 112 KB transferred, 594 ms
+
+I genomsnitt efter förändring:
+12 requests, 112 KB transferred, 556 ms
+
+23 KB mindre att ladda ner.
