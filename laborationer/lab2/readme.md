@@ -194,3 +194,67 @@ längre lika många parallella nerladdningar, men det får jag fixa senare.
 Jag kunde inte se att css-filerna ändrades, men om de gör det så skulle jag
 kunna cacha filerna på min server istället för att bara lägga filerna där
 manuellt.
+
+
+### En css-fil
+
+Det finns 5 css-filer och lite css i html-filen så om jag lägger all css i
+en fil blir det 4 färre http-anrop och all css kan cachas.
+
+Referens är High Performance Web Sites sidan 29.
+
+Innan förändring:
+16 requests, 502 KB transferred, 848 ms
+16 requests, 502 KB transferred, 3450 ms
+16 requests, 502 KB transferred, 807 ms
+16 requests, 502 KB transferred, 743 ms
+16 requests, 502 KB transferred, 690 ms
+16 requests, 502 KB transferred, 836 ms
+16 requests, 502 KB transferred, 722 ms
+16 requests, 502 KB transferred, 828 ms
+16 requests, 502 KB transferred, 913 ms
+16 requests, 502 KB transferred, 611 ms
+16 requests, 502 KB transferred, 2090 ms
+16 requests, 502 KB transferred, 790 ms
+16 requests, 502 KB transferred, 640 ms
+16 requests, 502 KB transferred, 689 ms
+16 requests, 502 KB transferred, 658 ms
+16 requests, 502 KB transferred, 605 ms
+16 requests, 502 KB transferred, 3380 ms
+16 requests, 502 KB transferred, 645 ms
+16 requests, 502 KB transferred, 571 ms
+16 requests, 502 KB transferred, 667 ms
+
+I genomsnitt innan förändring:
+16 requests, 502 KB transferred, 1.06 s
+Utan 3450, 2090, 3380 blir det 721 ms
+
+Efter förändring:
+13 requests, 501 KB transferred, 751 ms
+13 requests, 501 KB transferred, 748 ms
+13 requests, 501 KB transferred, 572 ms
+13 requests, 501 KB transferred, 671 ms
+13 requests, 501 KB transferred, 695 ms
+13 requests, 501 KB transferred, 592 ms
+13 requests, 501 KB transferred, 473 ms
+13 requests, 501 KB transferred, 553 ms
+13 requests, 501 KB transferred, 507 ms
+13 requests, 501 KB transferred, 473 ms
+13 requests, 501 KB transferred, 709 ms
+13 requests, 501 KB transferred, 506 ms
+13 requests, 501 KB transferred, 557 ms
+13 requests, 501 KB transferred, 635 ms
+13 requests, 501 KB transferred, 584 ms
+13 requests, 501 KB transferred, 510 ms
+13 requests, 501 KB transferred, 632 ms
+13 requests, 501 KB transferred, 536 ms
+13 requests, 501 KB transferred, 491 ms
+13 requests, 501 KB transferred, 597 ms
+
+I genomsnitt efter förändring:
+13 requests, 502 KB transferred, 590 ms
+
+Jag bestämde mig för att ha en bootstrap.css och en screen.css eftersom jag
+kommer använda CDN för Bootstrap senare.
+
+Tiden att ladda sidan är nu en halv sekund och 13 requests.
