@@ -40,7 +40,7 @@ template title body = toResponse $
       body
 
 pageNotFound :: ServerPart Response
-pageNotFound = ok $ template "Page Not Found" $ do
+pageNotFound = notFound $ template "Page Not Found" $ do
   H.h1 "Page Not Found"
   H.p "It's not here."
   H.p $ a ! href "/" $ "Front page"
@@ -52,7 +52,6 @@ homePage = ok $ template "Home page" $ do
   H.script ! src "javascript.js" $ ""
 
 json :: ServerPart Response
---json = undefined
 json = do
   t <- liftIO $ traffic [OptionPage 1 10]
   case t of
