@@ -8,7 +8,7 @@ import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import Happstack.Lite
 import Text.Blaze.Html5 (Html, (!), a, form, input, p, toHtml, label)
-import Text.Blaze.Html5.Attributes (action, enctype, href, name, size, type_, value, src)
+import Text.Blaze.Html5.Attributes (action, enctype, href, name, size, type_, value, src, rel)
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
 import Control.Monad.IO.Class (liftIO)
@@ -40,6 +40,9 @@ template title body = toResponse $
   H.docTypeHtml $ do
     H.head $ do
       H.title (toHtml title)
+      H.link ! rel "stylesheet" ! type_ "text/css" ! href "files/page.css"
+      H.script ! src "https://maps.googleapis.com/maps/api/js?key=AIzaSyBL0CUs0aFTQhrpfZvurxyn1BBYzDBQkOE&sensor=false" $ ""
+      H.script ! src "files/javascript.js" $ ""
     H.body $ do
       body
 
@@ -51,9 +54,9 @@ pageNotFound = notFound $ template "Page Not Found" $ do
 
 homePage :: ServerPart Response
 homePage = ok $ template "Home page" $ do
-  H.h1 "Home page"
-  H.p "More is comming"
-  H.script ! src "files/javascript.js" $ ""
+  H.div ! A.id "map-canvas" $ ""
+  --H.h1 "Home page"
+  --H.p "More is comming"
 
 json :: ServerPart Response
 json = do
