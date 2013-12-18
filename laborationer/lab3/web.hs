@@ -57,25 +57,7 @@ json = do
   t <- liftIO $ traffic [OptionPage 1 10]
   case t of
     Just sr -> ok $ toResponse $ sr
-    Nothing -> ok $ toResponse $ ("No data found" :: String)
-    --Nothing -> setResponseCode 503 $ toResponse $ ("No data found")
+    Nothing -> internalServerError $ toResponse $ ("No data found" :: String)
 
 main :: IO ()
 main = serve config routes
-
-{-
-test :: B.ByteString
-test = tempfn $ traffic [OptionPage 2 10]
-  where tempfn (IO (Just ps)) = encode ps
-        tempfn (IO (Nothing)) = "error"
-
-main :: IO ()
-main = print test
--}
-{-
-main = do
-  d <- traffic [OptionPage 2 10]
-  case d of
-    Nothing -> putStrLn "error"
-    Just ps -> print $ encode ps
--}
