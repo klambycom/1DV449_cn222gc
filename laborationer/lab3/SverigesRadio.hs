@@ -1,6 +1,10 @@
 {-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
 
-module SverigesRadio (traffic, SROption (..)) where
+module SverigesRadio ( traffic
+                     , SROption (..)
+                     , SverigesRadio (..)
+                     , Message (..)
+                     ) where
 
 import Data.Aeson
 import Control.Applicative
@@ -58,5 +62,5 @@ url xs = "http://api.sr.se/api/v2/traffic/messages?format=json&pagination=true" 
   where parameters []     = ""
         parameters (x:xs) = show x ++ parameters xs
 
-traffic :: [SROption] -> IO (Either String SverigesRadio)
-traffic options = eitherDecode <$> (simpleHttp $ url options)
+traffic :: [SROption] -> IO (Maybe SverigesRadio)
+traffic options = decode <$> (simpleHttp $ url options)
