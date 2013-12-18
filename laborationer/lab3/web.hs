@@ -41,8 +41,6 @@ template title body = toResponse $
     H.head $ do
       H.title (toHtml title)
       H.link ! rel "stylesheet" ! type_ "text/css" ! href "files/page.css"
-      H.script ! src "https://maps.googleapis.com/maps/api/js?key=AIzaSyBL0CUs0aFTQhrpfZvurxyn1BBYzDBQkOE&sensor=false" $ ""
-      H.script ! src "files/javascript.js" $ ""
     H.body $ do
       body
 
@@ -55,6 +53,7 @@ pageNotFound = notFound $ template "Page Not Found" $ do
 homePage :: ServerPart Response
 homePage = ok $ template "Home page" $ do
   H.div ! A.id "map-canvas" $ ""
+  H.script ! src "files/javascript.js" $ ""
   --H.h1 "Home page"
   --H.p "More is comming"
 
