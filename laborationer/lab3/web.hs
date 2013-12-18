@@ -26,10 +26,14 @@ config = Just $ ServerConfig { port      = 8000
                              }
 
 routes :: ServerPart Response
-routes = msum [ dir "json" $ json
+routes = msum [ dir "json"  $ json
+              , dir "files" $ fileServing
               , nullDir >> homePage
               , pageNotFound
               ]
+
+fileServing :: ServerPart Response
+fileServing = serveDirectory DisableBrowsing [] "./public"
 
 template :: Text -> Html -> Response
 template title body = toResponse $
@@ -49,7 +53,7 @@ homePage :: ServerPart Response
 homePage = ok $ template "Home page" $ do
   H.h1 "Home page"
   H.p "More is comming"
-  H.script ! src "javascript.js" $ ""
+  H.script ! src "files/javascript.js" $ ""
 
 json :: ServerPart Response
 json = do
