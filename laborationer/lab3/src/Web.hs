@@ -1,4 +1,12 @@
-{-# LANGUAGE OverloadedStrings, ScopedTypeVariables, FlexibleInstances, UndecidableInstances #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE UndecidableInstances #-}
+
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE RecordWildCards #-}
+
+module Main where
 
 import SverigesRadio
 import Data.Aeson (encode, ToJSON)
@@ -6,7 +14,7 @@ import Data.Aeson (encode, ToJSON)
 import Control.Applicative ((<$>), optional)
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import Happstack.Lite
+--import Happstack.Lite
 import Text.Blaze.Html5 (Html, (!), a, form, input, p, toHtml, label, dataAttribute)
 import Text.Blaze.Html5.Attributes (action, enctype, href, name, size, type_, value, src, rel)
 import qualified Text.Blaze.Html5 as H
@@ -14,16 +22,26 @@ import qualified Text.Blaze.Html5.Attributes as A
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.ByteString.Char8 as B
 
+import Control.Monad
+import Data.Data
+
+import Happstack.Server hiding (port, timeout)
+import qualified Happstack.Server as S
+import System.Console.CmdArgs.Implicit ((&=))
+import qualified System.Console.CmdArgs.Implicit as I
+
 instance (ToJSON a) => ToMessage a where
   toContentType _ = B.pack "application/json"
   toMessage       = encode
 
+{-
 config :: Maybe ServerConfig
 config = Just $ ServerConfig { port      = 8000
                              , ramQuota  = 1 * 10^6
                              , diskQuota = 20 * 10^6
                              , tmpDir    = "/tmp/"
                              }
+-}
 
 routes :: ServerPart Response
 routes = msum [ dir "json"  $ json
@@ -70,5 +88,21 @@ json = do
     Just sr -> ok $ toResponse $ sr
     Nothing -> internalServerError $ toResponse $ ("No data found" :: String)
 
+data Config = Config { port :: Int, timeout :: Int } deriving(Show, Eq, Data, Typeable)
+
+hConf :: Config -> Conf
+hConf (Config {..}) = nullConf { S.timeout = timeout, S.port = port }
+
+aConfig :: Config
+aConfig = Config { port    = 800 &= I.help "Port number"
+                                 &= I.typ "INT"
+                 , timeout = 30  &= I.help "Timeout"
+                                 &= I.typ "SECONDS"
+                 }
+            &= I.summary "Web server"
+            &= I.program "server"
+
 main :: IO ()
-main = serve config routes
+main = do
+  config <- I.cmdArgs aConfig
+  simpleHTTP (hConf config) routes
