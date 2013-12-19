@@ -31,31 +31,32 @@ ul {
 }
 
 #categories ul li a {
-  background-color: red;
   padding: 5px;
   border-radius: 5px;
   color: white;
   text-decoration: none;
+  text-shadow: black 0px 1px 5px;
 }
 
 #categories ul li a[data-category="0"] {
-  background-color: red;
+  background-color: #6A97FF;
 }
 
 #categories ul li a[data-category="1"] {
-  background-color: green;
+  background-color: #96EC7C;
 }
 
 #categories ul li a[data-category="2"] {
-  background-color: yellow;
+  background-color: #FAA7FF;
 }
 
 #categories ul li a[data-category="3"] {
-  background-color: blue;
+  background-color: #FF766A;
 }
 
 #categories ul li a.unselected {
   background-color: white;
   color: black;
   opacity: .5;
+  text-shadow: white 0px 0px;
 }

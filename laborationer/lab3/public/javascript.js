@@ -13,7 +13,8 @@
         var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(message.latitude, message.longitude),
                 map: map,
-                title: message.title
+                title: message.title,
+                icon: "files/" + message.category + ".png"
             }),
             infoWindow = new google.maps.InfoWindow({
                 content: message.description
