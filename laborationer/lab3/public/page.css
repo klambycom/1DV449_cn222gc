@@ -26,11 +26,11 @@ ul {
   margin: 10px;
 }
 
-#categories ul li {
+#categories ul li, #zoom ul li {
   margin-bottom: 15px;
 }
 
-#categories ul li a {
+#categories ul li a, #zoom ul li a {
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -54,9 +54,22 @@ ul {
   background-color: #FF766A;
 }
 
-#categories ul li a.unselected {
+#categories ul li a.unselected, #zoom ul li a.unselected {
   background-color: white;
   color: black;
   opacity: .5;
   text-shadow: white 0px 0px;
+}
+
+#zoom {
+  position: absolute;
+  z-index: 100;
+  margin: 10px;
+}
+
+#zoom-in, #zoom-out {
+  background-color: lightslategray;
+  width: 20px;
+  display: block;
+  text-align: center;
 }

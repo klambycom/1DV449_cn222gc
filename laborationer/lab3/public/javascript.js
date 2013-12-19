@@ -78,10 +78,82 @@
         });
     }
 
+    function zoomOut() {
+        var zoom = map.getZoom();
+        if (zoom > 0) {
+            zoom -= 1;
+            map.setZoom(zoom);
+        }
+
+        return zoom === 0;
+    }
+
+    function zoomIn() {
+        var zoom = map.getZoom();
+        if (zoom < 21) {
+            zoom += 1;
+            map.setZoom(zoom);
+        }
+
+        return zoom === 21;
+    }
+
+    function zoomBtns() {
+        var div, ul, liIn, liOut, linkIn, linkOut;
+
+        div = document.createElement("div");
+        div.setAttribute('id', 'zoom');
+
+        ul = document.createElement('ul');
+
+        liIn = document.createElement('li');
+        linkIn = document.createElement('a');
+        linkIn.innerHTML = '+';
+        linkIn.setAttribute('id', 'zoom-in');
+        linkIn.setAttribute('href', '#');
+        liIn.appendChild(linkIn);
+        ul.appendChild(liIn);
+
+        liOut = document.createElement('li');
+        linkOut = document.createElement('a');
+        linkOut.innerHTML = '-';
+        linkOut.setAttribute('id', 'zoom-out');
+        linkOut.setAttribute('href', '#');
+        liOut.appendChild(linkOut);
+        ul.appendChild(liOut);
+
+        linkIn.addEventListener('click', function (e) {
+            zoomIn();
+            e.preventDefault();
+        });
+
+        linkOut.addEventListener('click', function (e) {
+            zoomOut();
+            e.preventDefault();
+        });
+
+        google.maps.event.addListener(map, 'zoom_changed', function () {
+            var zoom = map.getZoom();
+
+            linkIn.classList.remove('unselected');
+            linkOut.classList.remove('unselected');
+
+            if (zoom === 0) {
+                linkOut.classList.add('unselected');
+            } else if (zoom === 21) {
+                linkIn.classList.add('unselected');
+            }
+        });
+
+        div.appendChild(ul);
+        document.body.insertBefore(div, document.getElementById('map-canvas'));
+    }
+
     window.initialize = function () {
         var mapOptions = {
-                center: new google.maps.LatLng(56.663, 16.363),
-                zoom: 4,//10,
+                //center: new google.maps.LatLng(56.663, 16.363),
+                center: new google.maps.LatLng(60.482778, 15.436389),
+                zoom: 6,//10,
                 disableDefaultUI: true
             },
             req = new XMLHttpRequest();
@@ -103,6 +175,8 @@
 
         [].forEach.call(document.querySelectorAll('#categories ul li a'),
                 categoryLink);
+
+        zoomBtns();
     };
 
     function loadScript() {
