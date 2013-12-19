@@ -14,7 +14,6 @@ import Data.Aeson (encode, ToJSON)
 import Control.Applicative ((<$>), optional)
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
---import Happstack.Lite
 import Text.Blaze.Html5 (Html, (!), a, form, input, p, toHtml, label, dataAttribute)
 import Text.Blaze.Html5.Attributes (action, enctype, href, name, size, type_, value, src, rel)
 import qualified Text.Blaze.Html5 as H
@@ -33,15 +32,6 @@ import qualified System.Console.CmdArgs.Implicit as I
 instance (ToJSON a) => ToMessage a where
   toContentType _ = B.pack "application/json"
   toMessage       = encode
-
-{-
-config :: Maybe ServerConfig
-config = Just $ ServerConfig { port      = 8000
-                             , ramQuota  = 1 * 10^6
-                             , diskQuota = 20 * 10^6
-                             , tmpDir    = "/tmp/"
-                             }
--}
 
 routes :: ServerPart Response
 routes = msum [ dir "json"  $ json
@@ -78,8 +68,6 @@ homePage = ok $ template "Home page" $ do
       H.li $ a ! href "#" ! dataAttribute "category" "3" $ "Övrigt"
   H.div ! A.id "map-canvas" $ ""
   H.script ! src "files/javascript.js" $ ""
-  --H.h1 "Home page"
-  --H.p "More is comming"
 
 json :: ServerPart Response
 json = do
