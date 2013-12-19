@@ -7,7 +7,7 @@ import Control.Applicative ((<$>), optional)
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import Happstack.Lite
-import Text.Blaze.Html5 (Html, (!), a, form, input, p, toHtml, label)
+import Text.Blaze.Html5 (Html, (!), a, form, input, p, toHtml, label, dataAttribute)
 import Text.Blaze.Html5.Attributes (action, enctype, href, name, size, type_, value, src, rel)
 import qualified Text.Blaze.Html5 as H
 import qualified Text.Blaze.Html5.Attributes as A
@@ -52,6 +52,12 @@ pageNotFound = notFound $ template "Page Not Found" $ do
 
 homePage :: ServerPart Response
 homePage = ok $ template "Home page" $ do
+  H.div ! A.id "categories" $ do
+    H.ul $ do
+      H.li $ a ! href "#" ! dataAttribute "category" "0" $ "Vägtrafik"
+      H.li $ a ! href "#" ! dataAttribute "category" "1" $ "Kollektivtrafik"
+      H.li $ a ! href "#" ! dataAttribute "category" "2" $ "Planerad störning"
+      H.li $ a ! href "#" ! dataAttribute "category" "3" $ "Övrigt"
   H.div ! A.id "map-canvas" $ ""
   H.script ! src "files/javascript.js" $ ""
   --H.h1 "Home page"
@@ -59,7 +65,7 @@ homePage = ok $ template "Home page" $ do
 
 json :: ServerPart Response
 json = do
-  t <- liftIO $ traffic [OptionPage 1 10]
+  t <- liftIO $ traffic [OptionPage 1 100]
   case t of
     Just sr -> ok $ toResponse $ sr
     Nothing -> internalServerError $ toResponse $ ("No data found" :: String)

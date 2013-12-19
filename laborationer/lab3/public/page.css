@@ -4,8 +4,58 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  margin: 0;
+  font-family: sans-serif;
 }
 
 #map-canvas {
   height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#categories {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  text-align: right;
+  margin: 10px;
+}
+
+#categories ul li {
+  margin-bottom: 15px;
+}
+
+#categories ul li a {
+  background-color: red;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+#categories ul li a[data-category="0"] {
+  background-color: red;
+}
+
+#categories ul li a[data-category="1"] {
+  background-color: green;
+}
+
+#categories ul li a[data-category="2"] {
+  background-color: yellow;
+}
+
+#categories ul li a[data-category="3"] {
+  background-color: blue;
+}
+
+#categories ul li a.unselected {
+  background-color: white;
+  color: black;
+  opacity: .5;
 }
