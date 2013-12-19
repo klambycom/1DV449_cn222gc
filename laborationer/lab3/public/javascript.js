@@ -7,7 +7,13 @@
     var choosenCategory,
         map,
         markers = [],
-        messages;
+        messages,
+        priority = ["",
+                    "Mycket allvarlig händelse",
+                    "Stor händelse",
+                    "Störning",
+                    "Information",
+                    "Mindre störning"];
 
     function placeMarker(message) {
         var marker = new google.maps.Marker({
@@ -16,9 +22,30 @@
                 title: message.title,
                 icon: "files/" + message.category + ".png"
             }),
-            infoWindow = new google.maps.InfoWindow({
-                content: message.description
-            });
+            date = new Date(parseInt(message.createddate.replace(/(^.*\()|([+-].*$)/g, ''), 10)),
+            hours,
+            minutes,
+            infoWindow;
+
+        if (date.getHours() < 10) {
+            hours = "0" + date.getHours();
+        } else {
+            hours = date.getHours();
+        }
+
+        if (date.getMinutes() < 10) {
+            minutes = "0" + date.getMinutes();
+        } else {
+            minutes = date.getMinutes();
+        }
+
+        infoWindow = new google.maps.InfoWindow({
+            content: "<h1>" + message.subcategory + ": " + message.title + "</h1>" +
+                     "<p><strong>" + priority[message.priority] + " (" +
+                     date.getDate() + "/" + (date.getMonth() + 1) + " " +
+                     hours + ":" + minutes + ")</strong> " +
+                     message.description + "</p><p>" + message.exactlocation + "</p>"
+        });
 
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow.open(marker.get('map'), marker);
