@@ -9,6 +9,7 @@ var express = require('express'),
 
 // Settings
 app.configure(function () {
+    app.set('view engine', 'hbs');
 });
 
 app.configure('development', function () {
@@ -26,10 +27,9 @@ app.get('/hello.txt', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    Producer.find({}, function (err, producer) {
+    Producer.find({}, function (err, producers) {
         if (err) { console.log(err); }
-        console.log(producer);
-        res.send(producer);
+        res.render('index', { producers: producers });
     });
 });
 

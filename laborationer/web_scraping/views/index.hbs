@@ -1,0 +1,15 @@
+<h1>Producenter</h1>
+
+<ul>
+  {{#each producers}}
+    <li>
+      <h2>{{name}}</h2>
+      <ul>
+        <li>Id: {{id}}</li>
+        <li>Url: {{url}}</li>
+        <li>Location: {{location}}</li>
+        <li>Scrapings: {{scrapings}}</li>
+      </ul>
+    </li>
+  {{/each}}
+</ul>
