@@ -26,7 +26,7 @@ app.get('/hello.txt', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    Producer.find({ name: /^P1/ }, function (err, producer) {
+    Producer.find({}, function (err, producer) {
         if (err) { console.log(err); }
         console.log(producer);
         res.send(producer);
@@ -35,7 +35,13 @@ app.get('/', function (req, res) {
 
 app.get('/skrapa', function (req, res) {
     scraper.producers(function (err, data) {
-        res.send(data);
+        data.forEach(function (d) {
+            var producer = new Producer(d);
+            producer.createOrUpdate(function (err, result) {
+                if (err) { console.log("Error when saving"); }
+            });
+        });
+        res.send("ok");
     });
 });
 

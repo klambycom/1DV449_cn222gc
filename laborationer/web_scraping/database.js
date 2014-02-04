@@ -4,7 +4,7 @@
 var mongoose = require('mongoose');
 
 var producerSchema = mongoose.Schema({
-    scraped_id: String,
+    id: String,
     name: { type: String, default: 'Unknown' },
     location: { type: String, default: 'Unknown' },
     url: { type: String, default: 'Unknown' },
@@ -34,7 +34,7 @@ producerSchema.methods.createOrUpdate = function (callback) {
 	var self = this,
 		data = this.toObject();
 	delete data._id;
-	this.model('Producer').findOne({ scraped_id: this.scraped_id }, function (err, producer) {
+	this.model('Producer').findOne({ id: this.id }, function (err, producer) {
 		if (producer) {
 			producer.scrapings.push({
 				scraped_at: Date.now(),
