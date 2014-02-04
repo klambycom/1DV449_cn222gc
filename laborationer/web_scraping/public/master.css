@@ -109,3 +109,19 @@ a:visited {
   margin-top: 10px;
   font-size: 0.8em;
 }
+
+h1 a:visited {
+  color: rgb(73,57,57);
+}
+
+h1 a {
+  font-size: 0.3em;
+  float: right;
+  margin: 13px;
+  color: rgb(73,57,57);
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  padding: 10px;
+  font-family: sans-serif;
+  font-weight: bold;
+}

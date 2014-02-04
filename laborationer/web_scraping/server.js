@@ -7,7 +7,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Producer = require('./database'),
     hbs = require('hbs'),
-    moment = require('moment');
+    moment = require('moment'),
+    async = require('async');
 
 // Settings
 app.configure(function () {
@@ -20,6 +21,7 @@ app.configure('development', function () {
 });
 
 app.configure('production', function () {
+    app.set('db', 'hemligt');
 });
 
 mongoose.connect(app.get('db'));
@@ -53,10 +55,6 @@ hbs.registerHelper('date', function (date, format) {
 });
 
 // Routes
-app.get('/hello.txt', function (req, res) {
-    res.send('Hello, World');
-});
-
 app.get('/', function (req, res) {
     Producer.find({}, function (err, producers) {
         if (err) { console.log(err); }
@@ -66,13 +64,16 @@ app.get('/', function (req, res) {
 
 app.get('/skrapa', function (req, res) {
     scraper.producers(function (err, data) {
-        data.forEach(function (d) {
-            var producer = new Producer(d);
-            producer.createOrUpdate(function (err, result) {
+        var producers = data.map(function (x) { return new Producer(x); });
+
+        async.each(producers,
+            function (item, callback) {
+                item.createOrUpdate(callback);
+            },
+            function (err) {
                 if (err) { console.log("Error when saving"); }
+                res.redirect('/');
             });
-        });
-        res.send("ok");
     });
 });
 
