@@ -53,3 +53,6 @@ file { 'php-config':
 package { "sqlite3":
   ensure => installed,
 }
+
+# Module willdurand/nodejs
+include nodejs
