@@ -2,7 +2,6 @@
 'use strict';
 
 module.exports = (function () {
-
     var dot = function (attr) {
             var args = [].slice.call(arguments);
             args.shift();
@@ -28,20 +27,16 @@ module.exports = (function () {
 
             return r;
         },
-        
-        map = function (fn, xs) {
-            return [].map.call(xs, fn);
-        },
 
-		filter = function (fn, xs) {
-			return [].slice.call(xs).filter(fn);
-		};
+        map = function (fn, xs) { return [].map.call(xs, fn); },
+
+        filter = function (fn, xs) { return [].slice.call(xs).filter(fn); };
 
     return {
         dot: dot,
         joinStr: joinStr,
         zipWith: zipWith,
         map: map,
-		filter: filter
+        filter: filter
     };
 }());
