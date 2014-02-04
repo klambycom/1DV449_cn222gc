@@ -5,11 +5,14 @@ var express = require('express'),
     app = express(),
     scraper = require('./localProcuersScraper'),
     mongoose = require('mongoose'),
-    Producer = require('./database');
+    Producer = require('./database'),
+    hbs = require('hbs'),
+    moment = require('moment');
 
 // Settings
 app.configure(function () {
     app.set('view engine', 'hbs');
+    app.use(express['static']('public'));
 });
 
 app.configure('development', function () {
@@ -20,6 +23,34 @@ app.configure('production', function () {
 });
 
 mongoose.connect(app.get('db'));
+
+// Handlebar
+hbs.registerHelper('producer_link', function (producer) {
+    if (producer.url === "#" || producer.url === "Unknown") {
+        return producer.name;
+    }
+
+    return new hbs.handlebars.SafeString('<a href="' + producer.url + '">' + producer.name + '</a>');
+});
+
+hbs.registerHelper('each_to_limit', function (context, limit, options) {
+    var toLimit = context
+        .reverse()
+        .slice(0, limit)
+        .map(options.fn)
+        .join('');
+
+    if (limit < context.length) {
+        return toLimit + options.inverse({ nr_of_more_times: context.length - limit });
+    }
+
+    return toLimit;
+});
+
+hbs.registerHelper('date', function (date, format) {
+    moment.lang('sv');
+    return moment(date).format(format);
+});
 
 // Routes
 app.get('/hello.txt', function (req, res) {

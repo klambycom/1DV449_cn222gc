@@ -26,7 +26,7 @@ var extractCompanyData = function (data) {
     var page = cheerio.load(data.payload);
     return {
         name: page('.hero-unit h1').text(),
-        ort: page('.ort').text().replace(/Ort: /, ''),
+        location: page('.ort').text().replace(/Ort: /, ''),
         url: page('.hero-unit a').attr('href'),
         picture: page('.hero-unit img').attr('src')
     };
